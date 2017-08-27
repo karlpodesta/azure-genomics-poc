@@ -19,10 +19,12 @@ From the resulting output, find the public IP address.  Then use "ssh msadmin@<p
 
 ### 2. Deploy Genomics Software
 In the accompanying Linux script, __"setup-genomics-software.sh"__, genomics software is downloaded, compiled, and installed to the Linux VM, ready for execution from a folder called /opt/genomics.  You can follow these steps:
-* First, download the script to your Linux VM
-* Save the script to the root user's home folder (/root)
+* Connect (SSH) to your VM, login with "msadmin" user
+* Log in as the root user ("sudo su -")
+* Copy or download the script to your Linux VM - save to root user's home folder (/root)
 * Make the script executable (chmod +x setup-genomics-software.sh)
-* Execute the script (./setup-genomics-software.sh)
+* Execute the script (./setup-genomics-software.sh) - takes about 5 mins to run
+* Software should now be installed under /opt/genomics, and the binaries in /opt/genomics/bin
 
 ### 3. Test Genomics Workflow
 
