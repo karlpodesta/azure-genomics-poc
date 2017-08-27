@@ -33,8 +33,8 @@ Microsoft has partnerships with third party ISVs (software vendors) such as:
 
 ## Solution Overview
 There are a number of ways to approach using Azure for Genomics.  These include: 
-* __IaaS:__ Deploy a big Linux Virtual Machine (VM), install Genomics software, and execute a Genomics pipeline (i.e. script of tasks to complete in order)
-* __PaaS:__ Use the Microsoft Genomics PaaS service (preview)
+* __IaaS:__ Deploy a big Linux Virtual Machine (VM), install Genomics software, and execute a Genomics pipeline (i.e. script of tasks to complete in order). This can help replicate (in Azure) the current environments that researchers are using (on premise), and can help do useful computing right away. 
+* __PaaS:__ Use the Microsoft Genomics PaaS service (preview) - working together with the Broad Institute Best Practice pipeline & tools, Microsoft Research has developed __7x__ improvements for workflows involving the GATK and BWA tools, and is currently providing this as a PaaS service. 
 * __PaaS:__ Use alternative PaaS solutions in Azure, including Azure Batch and Azure DataFactory
 * Use a combination of approaches!
 * Your solution here! (if you come up with something better, why not let us know?)
