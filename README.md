@@ -1,7 +1,43 @@
 # Genomics Big Compute Lab
 WORK IN PROGRESS
 
+## Background
+Genomics is the study of genomes - the complete set of genetic material within an organism.  A genome contains instructions for making an organism. The genome is a sequence of amino acids (DNA) aka "bases", represented by the letters A, C, T, and G.  For example, the Human Genome contains 4 billion of these letters, in a particular sequence.  Within this sequence, smaller sequences make up our "genes", which in turn are used to make proteins that ultimately make up our bodies.  The "Exome" is this (small!) subset of the genome that makes proteins, and is what many researchers currently focus on - typically to identify the genes that lead to diseases. 
+
+## Context
+Here is some interesting information about Genomics Data: 
+* Genomics data is __really big__ data. Netflix has approximately 3 PB data, total. Illumina (makers of the most common genome sequencing machines) creates 3 PB of data __every 18 months__. 
+* Genomics data is not just the sequence itself - during analysis, several times more data is generated ("interim data"), leading to result data (the interim data can often be thrown away when the result is generated). 
+* It takes approx 450 core hours to process 1 full human genome
+
+## Typical Workflows
+A typical workflow is illustrated in the following diagram.  First, some organic matter from the organism (e.g. blood or hair from an animal or human) is put into a "sequencer", a lab-based machine that looks like a large printer. Different types of sequencers exist, but a common method is "High Throughput Sequencing" (HTS) or "shotgun" sequencing, which makes thousands of reads of parts of the sequence.  These are stored in files which are typically uploaded to a file share or cloud storage.  Software is used to align/match these parts together into a single, unique sequence (FASTQ file).  From here, the sequence is analysed.  Further software tools (used sequentially in a "workflow") can refine/clean/format the sequence data, match this sequence against a "reference" sequence, and ultimately find genes or parts of the sequence of interest to researchers. 
+
+## Software
+Software used in Genomics is typically (but not exclusively) Open Source. Linux is the most common platform used to process and analyse Genomic data. Some of the software tools include: 
+* __GATK:__ Genome Analysis Toolkit, developed by the Broad Institute
+* __BWA:__ Burroughs Wheeler Alignment
+* __SAMTOOLS:__
+* __VCFTOOLS:__
+* __Picard:__ 
+* __ANNOVAR:__ 
+* __R server:__ 
+* __Bioconductor:__
+
+Microsoft has partnerships with third party ISVs (software vendors) such as:
+* BC Platforms
+* DNAnexus
+* Appistry
+* Spiral Genetics
+* WuXiNextCODE
+
 ## Solution Overview
+There are a number of ways to approach using Azure for Genomics.  These include: 
+* __IaaS:__ Deploy a big Linux Virtual Machine (VM), install Genomics software, and execute a Genomics pipeline (i.e. script of tasks to complete in order)
+* __PaaS:__ Use the Microsoft Genomics PaaS service (preview)
+* __PaaS:__ Use alternative PaaS solutions in Azure, including Azure Batch and Azure DataFactory
+* Use a combination of approaches!
+* Your solution here! (if you come up with something better, why not let us know?)
 
 ## IaaS: Linux Virtual Machine (VM) + Genomics software
 ### 1. Deploy Linux VM
@@ -30,6 +66,17 @@ In the accompanying Linux script, __"setup-genomics-software.sh"__, genomics sof
 
 
 ## Microsoft Genomics Service (Preview)
+Instructions for using the Microsoft Genomics service (preview) are in the links below. 
+* First, you need to register with the Microsoft Genomics Service
+* Install the "msgen" tool on your Linux VM
+    * sudo apt-get install -y build-essential libssl-dev libffi-dev libpython-dev python-dev python-pip
+    * sudo pip install --upgrade --no-deps msgen
+    * sudo pip install msgen
+* Check connectivity to the Microsoft Genomics service using the msgen tool
+    * msgen list --api-url-base https://malibutest0044.azure-api.net --subscription-key <API-subscription-key>
+* Upload your files to Azure
+* Submit a pair of FASTQ files for processing
+* Submit multiple FASTQ files for processing
 
 ## Using Azure Batch
 
