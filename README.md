@@ -13,6 +13,8 @@ Here is some interesting information about Genomics Data:
 ## Typical Workflows
 A typical workflow is illustrated in the following diagram.  First, some organic matter from the organism (e.g. blood or hair from an animal or human) is put into a "sequencer", a lab-based machine that looks like a large printer. Different types of sequencers exist, but a common method is "High Throughput Sequencing" (HTS) or "shotgun" sequencing, which makes thousands of reads of parts of the sequence.  These are stored in files which are typically uploaded to a file share or cloud storage.  Software is used to align/match these parts together into a single, unique sequence (FASTQ file).  From here, the sequence is analysed.  Further software tools (used sequentially in a "workflow") can refine/clean/format the sequence data, match this sequence against a "reference" sequence, and ultimately find genes or parts of the sequence of interest to researchers. 
 
+![sequencing-workflow](sequencing-workflow-to-vcf.png)
+
 ## Software
 Software used in Genomics is typically (but not exclusively) Open Source. Linux is the most common platform used to process and analyse Genomic data. Some of the software tools include: 
 * __GATK:__ Genome Analysis Toolkit, developed by the Broad Institute
