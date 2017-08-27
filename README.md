@@ -89,5 +89,5 @@ Instructions for using the Microsoft Genomics service (preview) are in the links
 * GATK tutorial at UCLA - https://qcb.ucla.edu/wp-content/uploads/sites/14/2016/03/IntroductiontoVariantCallsetEvaluationandFilteringTutorialAppendix-LA2016.pdf 
 
 ## Reporting Bugs & Contributing
-For any problems/comments/suggestions, please share with Karl Podesta <kapodest@microsoft.com>
+For any problems/comments/suggestions, please share with Karl Podesta <kapodest@microsoft.com>. 
 If you wish to fix any problems yourself, please do so and submit a pull request! Thanks!
