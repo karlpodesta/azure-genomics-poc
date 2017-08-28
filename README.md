@@ -70,7 +70,7 @@ In the accompanying Linux script, __"setup-genomics-software.sh"__, genomics sof
 
 ## Microsoft Genomics Service (Preview)
 Instructions for using the Microsoft Genomics service (preview) are in the links below. 
-* First, you need to register with the Microsoft Genomics Service
+* First, you need to register with the Microsoft Genomics Service - https://malibutest0044.portal.azure-api.net/
 * Install the "msgen" tool on your Linux VM (CentOS)
     * sudo wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-10.noarch.rpm
     * sudo rpm -iUvh epel-release-7-10.noarch.rpm
@@ -79,8 +79,25 @@ Instructions for using the Microsoft Genomics service (preview) are in the links
     * sudo pip install msgen
 * Check connectivity to the Microsoft Genomics service using the msgen tool
     * msgen list --api-url-base https://malibutest0044.azure-api.net --subscription-key <API-subscription-key>
-* Upload your files to Azure
+* Install Azure CLI
+    * sudo yum check-update; sudo yum install -y gcc python libffi-devel python-devel openssl-devel
+    * curl -L https://aka.ms/InstallAzureCli | bash
+* Create a storage account - e.g. this was done via Azure portal
+* Create a storage container (input)
+    * az storage container create --name fastq --account-name genomicspocstorage --account-key <Azure-Storage-Account-Key>
+* Create a storage container (output)
+    * az storage container create --name genomicsout --account-name genomicspocstorage --account-key <Azure-Storage-Account-Key>
+* Download sample Genomics Data on your Linux VM (here we use the 1000 Genomes Project - http://www.internationalgenome.org/data-portal/sample/HG00119)
+    * mkdir /data; cd /data
+    * wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR043/SRR043348/SRR043348_1.fastq.gz
+    * wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR043/SRR043354/SRR043354_1.fastq.gz
+    * wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR043/SRR043354/SRR043354_1.fastq.gz
+    * wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR043/SRR043354/SRR043354_1.fastq.gz
+* Upload your files to Azure Blob Storage
+    * az storage blob upload --container-name fastq --file /data/SRR043348_1.fastq.gz --name SRR043348_1.fastq.gz --account-name genomicspocstorage --account-key <Azure-Storage-Account-Key>
+    * az storage blob upload --container-name fastq --file /data/SRR043354_1.fastq.gz --name SRR043354_1.fastq.gz --account-name genomicspocstorage --account-key <Azure-Storage-Account-Key>
 * Submit a pair of FASTQ files for processing
+    * msgen submit --api-url-base https://malibutest0044.azure-api.net --subscription-key <MS-Genomics-Subscription-Key> --process-args R=grch37bwa --input-storage-account-name genomicspocstorage --input-storage-account-key <Azure-Storage-Account-Key> --input-storage-account-container fastq --input-blob-name-1 SRR043348_1.fastq.gz --input-blob-name-2 SRR043354_1.fastq.gz --output-storage-account-name genomicspocstorage --output-storage-account-key <Azure-Storage-Account-Key> --output-storage-account-container genomicsout
 * Submit multiple FASTQ files for processing
 
 ## Using Azure Batch
